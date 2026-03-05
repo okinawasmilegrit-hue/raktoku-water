@@ -13,487 +13,242 @@
     --accent: #e05a2b;
     --gold: #c8922a;
     --bg: #f9f7f4;
-    --white: #ffffff;
+    --white: #fff;
     --text: #2a2a2a;
     --text-mid: #555;
     --text-light: #888;
     --border: #e2ddd8;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); font-size:16px; line-height:1.85; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.8;
-  }
-
+  /* HEADER */
   .site-header {
-    background: var(--white);
-    border-bottom: 2px solid var(--blue);
-    padding: 12px 20px;
+    background:var(--white);
+    border-bottom:2px solid var(--blue);
+    padding:12px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .site-logo { font-family:'Noto Serif JP',serif; font-size:1rem; font-weight:700; color:var(--blue-dark); }
+  .site-logo span { font-size:0.7rem; font-weight:400; color:var(--text-light); display:block; letter-spacing:0.1em; }
+
+  /* HERO */
+  .hero {
+    position:relative;
+    height:520px;
+    overflow:hidden;
+  }
+  .hero img {
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(160deg, rgba(8,32,60,0.72) 0%, rgba(13,79,122,0.55) 60%, rgba(26,111,168,0.35) 100%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px 24px;
+  }
+  .hero-badge {
+    display:inline-block;
+    background:rgba(255,255,255,0.18);
+    border:1px solid rgba(255,255,255,0.4);
+    color:rgba(255,255,255,0.9);
+    font-size:0.72rem; letter-spacing:0.2em;
+    padding:5px 18px; border-radius:50px;
+    margin-bottom:20px;
+  }
+  .hero h1 {
+    font-family:'Noto Serif JP',serif;
+    font-size:clamp(1.6rem,4vw,2.6rem);
+    font-weight:700; color:white; line-height:1.5;
+    margin-bottom:16px;
+  }
+  .hero p {
+    font-size:0.97rem; color:rgba(255,255,255,0.8);
+    max-width:560px; line-height:1.9;
+    margin-bottom:32px;
+  }
+  .hero-cta {
+    display:inline-block;
+    background:linear-gradient(135deg,#e05a2b,#c0381a);
+    color:white; font-size:1rem; font-weight:700;
+    padding:16px 44px; border-radius:50px;
+    text-decoration:none;
+    box-shadow:0 6px 24px rgba(200,60,30,0.4);
+    letter-spacing:0.05em;
   }
 
-  .site-logo {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-    letter-spacing: 0.05em;
+  /* ARTICLE WRAP */
+  .article-wrap { max-width:780px; margin:0 auto; padding:0 20px 80px; }
+
+  /* SECTION */
+  .section { padding:56px 0 0; }
+
+  .section-img {
+    width:100%; border-radius:12px;
+    margin:28px 0 10px; display:block;
+    object-fit:cover; max-height:360px;
   }
-
-  .site-logo span {
-    font-size: 0.72rem;
-    font-weight: 400;
-    color: var(--text-light);
-    display: block;
-    letter-spacing: 0.1em;
-  }
-
-  .page-wrap {
-    max-width: 1060px;
-    margin: 0 auto;
-    padding: 36px 20px 60px;
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 40px;
-    align-items: start;
-  }
-
-  @media (max-width: 760px) {
-    .page-wrap { grid-template-columns: 1fr; }
-    .sidebar { display: none; }
-  }
-
-  article {
-    background: var(--white);
-    border-radius: 4px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.07);
-    overflow: hidden;
-  }
-
-  .article-hero {
-    background: linear-gradient(135deg, #0a3055 0%, #1a7fb5 50%, #4db8d4 100%);
-    padding: 52px 40px 48px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .article-hero::before {
-    content: '💧';
-    position: absolute;
-    font-size: 160px;
-    right: -20px;
-    bottom: -30px;
-    opacity: 0.12;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .article-category {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.9);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    padding: 4px 14px;
-    border-radius: 3px;
-    margin-bottom: 16px;
-    font-weight: 500;
-  }
-
-  .article-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: clamp(1.4rem, 3.5vw, 2rem);
-    font-weight: 700;
-    color: white;
-    line-height: 1.5;
-    margin-bottom: 18px;
-  }
-
-  .article-meta {
-    display: flex;
-    gap: 18px;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.65);
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .article-body { padding: 40px 40px 48px; }
-
-  @media (max-width: 600px) {
-    .article-hero { padding: 36px 24px; }
-    .article-body { padding: 28px 22px 40px; }
-  }
-
-  .article-body p {
-    color: var(--text);
-    line-height: 1.95;
-    margin-bottom: 1.4em;
-    font-size: 0.97rem;
-  }
-
-  .article-body h2 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 1.22rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-    border-left: 4px solid var(--blue);
-    padding-left: 14px;
-    margin: 44px 0 18px;
-    line-height: 1.5;
-  }
-
-  .article-body h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 28px 0 10px;
+  .img-caption {
+    text-align:center; font-size:0.78rem;
+    color:var(--text-light); font-style:italic;
+    margin-bottom:28px;
   }
 
   .lead {
-    font-size: 1.02rem !important;
-    color: var(--text-mid) !important;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 18px 0;
-    margin-bottom: 32px !important;
+    font-size:1.02rem;
+    color:var(--text-mid);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:20px 0; margin:32px 0;
+    line-height:2;
   }
 
+  h2.sec-title {
+    font-family:'Noto Serif JP',serif;
+    font-size:1.3rem; font-weight:700;
+    color:var(--blue-dark);
+    border-left:4px solid var(--blue);
+    padding-left:14px;
+    margin-bottom:20px; line-height:1.5;
+  }
+
+  .article-wrap p {
+    color:var(--text); line-height:1.95;
+    margin-bottom:1.3em; font-size:0.97rem;
+  }
+
+  /* PAIN BOX */
   .pain-box {
-    background: #fff8f5;
-    border: 1px solid #f0d0c0;
-    border-radius: 8px;
-    padding: 24px 28px;
-    margin: 20px 0 28px;
+    background:#fff8f5; border:1px solid #f0d0c0;
+    border-radius:10px; padding:28px 32px; margin:24px 0;
   }
+  .pain-box-title { font-weight:700; font-size:0.88rem; color:var(--accent); margin-bottom:18px; }
+  .pain-item { display:flex; gap:14px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px dashed #f0d0c0; }
+  .pain-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .pain-icon { font-size:1.6rem; flex-shrink:0; margin-top:2px; }
+  .pain-item strong { display:block; font-size:0.95rem; color:var(--text); margin-bottom:5px; }
+  .pain-item p { font-size:0.875rem !important; color:var(--text-mid) !important; margin-bottom:0 !important; line-height:1.75 !important; }
 
-  .pain-box .box-title {
-    font-weight: 700;
-    font-size: 0.88rem;
-    color: var(--accent);
-    margin-bottom: 14px;
-    letter-spacing: 0.05em;
-  }
-
-  .pain-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin-bottom: 18px;
-    padding-bottom: 18px;
-    border-bottom: 1px dashed #f0d0c0;
-  }
-
-  .pain-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-
-  .pain-item .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
-
-  .pain-item strong {
-    display: block;
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .pain-item p {
-    font-size: 0.875rem !important;
-    color: var(--text-mid) !important;
-    margin-bottom: 0 !important;
-    line-height: 1.75 !important;
-  }
-
+  /* HIGHLIGHT */
   .highlight-box {
-    background: var(--blue-light);
-    border-left: 4px solid var(--blue);
-    border-radius: 0 8px 8px 0;
-    padding: 20px 24px;
-    margin: 28px 0;
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: var(--blue-dark);
+    background:var(--blue-light);
+    border-left:4px solid var(--blue);
+    border-radius:0 10px 10px 0;
+    padding:20px 24px; margin:28px 0;
+    font-size:0.95rem; line-height:1.9;
+    color:var(--blue-dark);
   }
 
-  .filter-steps { counter-reset: step; margin: 20px 0 28px; }
-
+  /* FILTER STEPS */
+  .filter-steps { counter-reset:step; margin:20px 0 28px; }
   .filter-step {
-    counter-increment: step;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 14px 16px;
-    background: #f5f8fb;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    border: 1px solid #d8e8f3;
+    counter-increment:step;
+    display:flex; gap:14px; align-items:flex-start;
+    padding:14px 18px; background:#f5f8fb;
+    border-radius:10px; margin-bottom:8px;
+    border:1px solid #d8e8f3;
   }
-
   .filter-step::before {
-    content: counter(step);
-    min-width: 28px; height: 28px;
-    background: var(--blue);
-    color: white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.82rem;
-    flex-shrink: 0;
-    margin-top: 1px;
+    content:counter(step);
+    min-width:30px; height:30px;
+    background:var(--blue); color:white;
+    border-radius:50%; display:flex;
+    align-items:center; justify-content:center;
+    font-weight:700; font-size:0.82rem; flex-shrink:0;
   }
+  .filter-step strong { display:block; font-size:0.93rem; margin-bottom:3px; }
+  .filter-step span { font-size:0.84rem; color:var(--text-mid); }
 
-  .filter-step-text strong { display: block; font-size: 0.92rem; margin-bottom: 2px; color: var(--text); }
-  .filter-step-text span { font-size: 0.84rem; color: var(--text-mid); }
-
+  /* USE CASES */
   .use-cases {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 16px 0 28px;
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:12px; margin:20px 0 28px;
   }
-
-  @media (max-width: 500px) { .use-cases { grid-template-columns: 1fr; } }
-
+  @media(max-width:500px){ .use-cases{ grid-template-columns:1fr; } }
   .use-case {
-    background: #f9f7f4;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 16px;
-    font-size: 0.88rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    background:white; border:1px solid var(--border);
+    border-radius:10px; padding:16px 18px;
+    font-size:0.88rem; display:flex;
+    align-items:center; gap:12px;
   }
+  .use-case .uc-icon { font-size:1.6rem; }
 
-  .use-case .uc-icon { font-size: 1.4rem; }
-
+  /* CAMPAIGN */
   .campaign-box {
-    background: linear-gradient(135deg, #fff9ee 0%, #fff3e0 100%);
-    border: 2px solid var(--gold);
-    border-radius: 12px;
-    padding: 28px 30px;
-    margin: 36px 0 28px;
+    background:linear-gradient(135deg,#fff9ee,#fff3e0);
+    border:2px solid var(--gold);
+    border-radius:14px; padding:32px 36px;
+    margin:40px 0 28px;
   }
-
   .campaign-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: white;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 4px 14px;
-    border-radius: 3px;
-    margin-bottom: 14px;
+    display:inline-block; background:var(--gold);
+    color:white; font-size:0.72rem; font-weight:700;
+    letter-spacing:0.1em; padding:5px 16px;
+    border-radius:3px; margin-bottom:14px;
   }
-
   .campaign-box h3 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 1.2rem;
-    color: #7a4a00;
-    margin-bottom: 12px;
-    display: block;
-    font-weight: 700;
+    font-family:'Noto Serif JP',serif;
+    font-size:1.3rem; color:#7a4a00;
+    margin-bottom:14px; font-weight:700;
   }
-
-  .campaign-box p {
-    font-size: 0.9rem !important;
-    color: #6a4800 !important;
-    margin-bottom: 16px !important;
-  }
-
-  .free-list {
-    list-style: none;
-    margin-bottom: 22px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
+  .campaign-box p { font-size:0.92rem !important; color:#6a4800 !important; margin-bottom:18px !important; }
+  .free-list { list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px; }
   .free-list li {
-    background: white;
-    border: 1px solid #e8c878;
-    border-radius: 4px;
-    padding: 6px 14px;
-    font-size: 0.84rem;
-    color: #7a4a00;
-    font-weight: 500;
+    background:white; border:1px solid #e8c878;
+    border-radius:5px; padding:7px 16px;
+    font-size:0.85rem; color:#7a4a00; font-weight:500;
   }
-
-  .free-list li::before { content: '✓ '; color: #2e7d52; font-weight: 700; }
+  .free-list li::before { content:'✓ '; color:#2e7d52; font-weight:700; }
 
   .cta-btn {
-    display: block;
-    text-align: center;
-    background: linear-gradient(135deg, #e05a2b, #c0381a);
-    color: white;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 18px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 16px rgba(200,60,30,0.3);
-    letter-spacing: 0.05em;
-    transition: transform 0.15s, box-shadow 0.15s;
+    display:block; text-align:center;
+    background:linear-gradient(135deg,#e05a2b,#c0381a);
+    color:white; font-size:1.05rem; font-weight:700;
+    padding:20px 24px; border-radius:10px;
+    text-decoration:none;
+    box-shadow:0 4px 20px rgba(200,60,30,0.32);
+    letter-spacing:0.05em;
+    transition:transform 0.15s, box-shadow 0.15s;
   }
+  .cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(200,60,30,0.4); }
+  .cta-note { text-align:center; font-size:0.78rem; color:#aa7a30; margin-top:12px; }
 
-  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,60,30,0.38); }
-
-  .article-tags {
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .tags-label { font-size: 0.78rem; color: var(--text-light); margin-right: 4px; }
-
-  .tag {
-    background: #f0f0f0;
-    color: var(--text-mid);
-    font-size: 0.78rem;
-    padding: 4px 12px;
-    border-radius: 3px;
-    text-decoration: none;
-  }
-
+  /* AUTHOR */
   .author-card {
-    margin-top: 36px;
-    padding: 22px 24px;
-    background: #f5f8fb;
-    border-radius: 8px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    border: 1px solid #d8e8f3;
+    margin-top:48px; padding:24px 28px;
+    background:#f5f8fb; border-radius:10px;
+    display:flex; gap:18px; align-items:flex-start;
+    border:1px solid #d8e8f3;
   }
-
   .author-avatar {
-    width: 52px; height: 52px;
-    background: linear-gradient(135deg, var(--blue), #4db8d4);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    flex-shrink: 0;
+    width:56px; height:56px;
+    background:linear-gradient(135deg,var(--blue),#4db8d4);
+    border-radius:50%; display:flex;
+    align-items:center; justify-content:center;
+    font-size:1.6rem; flex-shrink:0;
   }
+  .author-name { font-weight:700; font-size:0.95rem; color:var(--text); margin-bottom:5px; }
+  .author-bio { font-size:0.83rem; color:var(--text-mid); line-height:1.75; }
 
-  .author-name { font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 4px; }
-  .author-bio { font-size: 0.82rem; color: var(--text-mid); line-height: 1.75; }
-
-  /* SIDEBAR */
-  .sidebar { position: sticky; top: 20px; }
-
-  .sidebar-widget {
-    background: var(--white);
-    border-radius: 4px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.07);
-    padding: 22px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-
-  .widget-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-    border-bottom: 2px solid var(--blue);
-    padding-bottom: 8px;
-    margin-bottom: 16px;
-    letter-spacing: 0.05em;
-  }
-
-  .sidebar-cta-box { background: linear-gradient(160deg, #0a3055, #1a7fb5); color: white; }
-  .sidebar-cta-box .widget-title { color: #7dd4ea; border-color: rgba(77,184,212,0.5); }
-  .sidebar-cta-box p { font-size: 0.83rem; color: rgba(255,255,255,0.8); line-height: 1.75; margin-bottom: 16px; }
-
-  .sidebar-cta-btn {
-    display: block;
-    text-align: center;
-    background: var(--accent);
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: opacity 0.15s;
-  }
-
-  .sidebar-cta-btn:hover { opacity: 0.88; }
-
-  .toc-list { list-style: none; font-size: 0.84rem; }
-
-  .toc-list li { border-bottom: 1px dashed var(--border); padding: 8px 0; }
-  .toc-list li:last-child { border-bottom: none; }
-
-  .toc-list a {
-    color: var(--blue);
-    text-decoration: none;
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-    line-height: 1.5;
-  }
-
-  .toc-list a::before { content: '▸'; flex-shrink: 0; margin-top: 1px; font-size: 0.7rem; }
-  .toc-list a:hover { color: var(--blue-dark); text-decoration: underline; }
-
-  .article-hero-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .blog-img {
-    width: 100%;
-    border-radius: 10px;
-    margin: 24px 0 8px;
-    display: block;
-    object-fit: cover;
-    max-height: 340px;
-  }
-
-  .blog-img-caption {
-    text-align: center;
-    font-size: 0.78rem;
-    color: var(--text-light);
-    margin-bottom: 24px;
-    font-style: italic;
-  }
-
-  .img-float-right {
-    float: right;
-    width: 44%;
-    border-radius: 10px;
-    margin: 4px 0 20px 24px;
-    object-fit: cover;
-    max-height: 220px;
-  }
-
-  @media (max-width: 600px) {
-    .img-float-right { float: none; width: 100%; margin: 16px 0; }
-  }
-
-  .clearfix::after { content: ''; display: block; clear: both; }
-
+  /* FOOTER */
   .site-footer {
-    background: #1a1a1a;
-    color: rgba(255,255,255,0.45);
-    text-align: center;
-    padding: 28px 20px;
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
+    background:#1a1a1a; color:rgba(255,255,255,0.4);
+    text-align:center; padding:28px 20px;
+    font-size:0.78rem; letter-spacing:0.05em;
+  }
+
+  @media(max-width:600px){
+    .hero { height:420px; }
+    .pain-box { padding:22px 20px; }
+    .campaign-box { padding:24px 22px; }
   }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="site-header">
   <div class="site-logo">
     株式会社SmileGrit
@@ -501,173 +256,133 @@
   </div>
 </header>
 
-<div class="page-wrap">
-  <main>
-    <article>
+<!-- HERO with photo -->
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&w=1400&q=85" alt="沖縄の美しい青い海">
+  <div class="hero-overlay">
+    <div class="hero-badge">🌊 沖縄のお水情報</div>
+    <h1>水道水が激変！？<br>沖縄専用フィルターで<br>「お店の美味しい軟水」を作る秘密</h1>
+    <p>カルキ臭を消して、まろやかな軟水に。水道直結だから待ち時間ゼロ。</p>
+    <a href="https://lstep.app/form/28365/ZMiflJ/69514a" class="hero-cta" target="_blank">▼ 1ヶ月完全無料お試しはこちら</a>
+  </div>
+</div>
 
-      <img src="https://picsum.photos/seed/okinawa/900/300" alt="沖縄の青い海と水" class="article-hero-img">
-      <div class="article-hero">
-        <div class="article-category">🌊 沖縄のお水情報</div>
-        <h1 class="article-title">
-          水道水が激変！？<br>
-          沖縄専用フィルターで「お店の美味しい軟水」を作る秘密
-        </h1>
-        <div class="article-meta">
-          <span>📅 2025年6月</span>
-          <span>🏢 株式会社SmileGrit</span>
-          <span>⏱ 約4分で読めます</span>
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <p class="lead">
+    毎日飲むお水、皆さんはどうしていますか？「水道水をそのまま、あるいは一度沸かして飲んでいる」「ポット型浄水器を使っている」という方も多いのではないでしょうか。手軽で経済的ですよね。
+  </p>
+
+  <!-- PAIN -->
+  <div class="section">
+    <h2 class="sec-title" id="pain">水道水やポット型で感じる「ちょっとした不満」</h2>
+    <p>でも、毎日の生活の中で、こんな「モヤモヤ」を感じることはありませんか？</p>
+
+    <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&w=780&q=80" alt="キッチンで水道水を使う様子" class="section-img">
+    <p class="img-caption">毎日使う水道水。実は沖縄の水にはちょっとした特徴があります</p>
+
+    <div class="pain-box">
+      <div class="pain-box-title">💬 よくある3つのお悩み</div>
+      <div class="pain-item">
+        <div class="pain-icon">😮‍💨</div>
+        <div>
+          <strong>「どうしてもカルキ（塩素）のニオイが気になる…」</strong>
+          <p>日本の水道水は安全ですが、消毒のための塩素が独特のニオイの原因に。そのまま飲むのはもちろん、お茶やコーヒーの風味も損ねてしまいます。</p>
         </div>
       </div>
-
-      <div class="article-body">
-
-        <p class="lead">
-          毎日飲むお水、皆さんはどうしていますか？「水道水をそのまま、あるいは一度沸かして飲んでいる」「ポット型浄水器を使っている」という方も多いのではないでしょうか。手軽で経済的ですよね。
-        </p>
-
-        <img src="https://picsum.photos/seed/water/800/340" alt="キッチンで水を飲む様子" class="blog-img">
-        <p class="blog-img-caption">毎日の水、なんとなく気になっていませんか？</p>
-
-        <h2 id="pain">水道水やポット型で感じる「ちょっとした不満」</h2>
-
-        <p>でも、毎日の生活の中で、こんな「モヤモヤ」を感じることはありませんか？</p>
-
-        <div class="pain-box">
-          <div class="box-title">💬 よくある3つのお悩み</div>
-          <div class="pain-item">
-            <div class="icon">😮‍💨</div>
-            <div>
-              <strong>「どうしてもカルキ（塩素）のニオイが気になる…」</strong>
-              <p>日本の水道水は安全ですが、消毒のための塩素が独特のニオイの原因に。そのまま飲むのはもちろん、お茶やコーヒーの風味も損ねてしまいます。</p>
-            </div>
-          </div>
-          <div class="pain-item">
-            <div class="icon">🐚</div>
-            <div>
-              <strong>「沖縄の水って、なんだか味が違う気がする」</strong>
-              <p>沖縄はサンゴ礁の地層を通ってきた水が多いため、ミネラル分が多い「硬水・中軟水」の地域が多くなっています。実は硬水だと、お料理の出汁が出にくかったり、味が薄く感じたりすることがあるんです。</p>
-            </div>
-          </div>
-          <div class="pain-item">
-            <div class="icon">⏳</div>
-            <div>
-              <strong>「ポット型は、ろ過の"待ち時間"が地味にストレス💦」</strong>
-              <p>料理でたくさん使いたい時や、喉が渇いて今すぐ飲みたい時、チョロチョロとろ過されるのを待つのは面倒ですよね。冷蔵庫の中で場所をとるのも悩みの種です。</p>
-            </div>
-          </div>
+      <div class="pain-item">
+        <div class="pain-icon">🐚</div>
+        <div>
+          <strong>「沖縄の水って、なんだか味が違う気がする」</strong>
+          <p>沖縄はサンゴ礁の地層を通ってきた水が多いため、ミネラル分が多い「硬水・中軟水」の地域が多くなっています。実は硬水だと、お料理の出汁が出にくかったり、味が薄く感じたりすることがあるんです。</p>
         </div>
-
-        <h2 id="solution">水道水が「極上の軟水」に変わる！沖縄専用フィルターの秘密</h2>
-
-        <p>「塩素のニオイを完全に消して、もっと手軽に美味しいお水が飲みたい！」</p>
-        <p>そんな沖縄の皆さまのために作られたのが、水道直結型ウォーターサーバー<strong>「ラクトク（楽得）ウォーター」</strong>です。</p>
-
-        <img src="https://picsum.photos/seed/faucet/800/340" alt="キッチンの蛇口と清潔な水" class="blog-img">
-        <p class="blog-img-caption">水道直結だからいつでも新鮮なお水がすぐに使えます</p>
-
-        <div class="highlight-box">
-          🔑 最大の特徴は、<strong>【沖縄の水質に合わせて設計された5段階フィルター】</strong>。<br>
-          サビやホコリはもちろん、気になる塩素（カルキ臭）や有機フッ素化合物（PFAS）までしっかりキャッチ！さらに、ミネラルを残しながらお茶やお料理が劇的に美味しくなる「軟水」へと仕上げます。
-        </div>
-
-        <h3>🔬 5段階フィルターの仕組み</h3>
-
-        <div class="filter-steps">
-          <div class="filter-step"><div class="filter-step-text"><strong>サビ・ホコリ除去</strong><span>水道管から混入する微細なごみをキャッチ</span></div></div>
-          <div class="filter-step"><div class="filter-step-text"><strong>塩素・フッ素化合物除去</strong><span>カルキ臭の原因となる塩素と有機フッ素化合物（PFAS）をカット</span></div></div>
-          <div class="filter-step"><div class="filter-step-text"><strong>ウイルス除去</strong><span>目に見えない細菌・ウイルスもしっかりブロック</span></div></div>
-          <div class="filter-step"><div class="filter-step-text"><strong>ミネラル調整・軟水化</strong><span>硬水を「まろやかな軟水」へ変換。出汁の旨みが引き立ちます</span></div></div>
-          <div class="filter-step"><div class="filter-step-text"><strong>塩素・フッ素化合物 最終除去</strong><span>残留した塩素・フッ素化合物を最終段階でさらに除去。より安心・クリアな仕上がりに</span></div></div>
-        </div>
-
-        <p>いつも使ってる水道水がサーバー（フィルター）を通せば、まるでカフェで出てくるような、<strong>まろやかで美味しいお水</strong>がいつでも飲めるようになります！</p>
-
-        <h2 id="feature">待ち時間ゼロ！冷水も温水も使い放題</h2>
-
-        <div class="clearfix">
-        <img src="https://picsum.photos/seed/coffee/600/220" alt="コーヒーを淹れる様子" class="img-float-right">
-        <p>ポット型浄水器のように、ろ過を待つ必要はもうありません。水道管と直結しているため、レバーを押すだけで「冷たいお水」も「熱いお湯（約85℃）」も、<strong>待ち時間ゼロ</strong>ですぐに出てきます。</p>
-        </div>
-
-        <div class="use-cases">
-          <div class="use-case"><span class="uc-icon">☕️</span><span>朝の忙しい時間のコーヒー作りに</span></div>
-          <div class="use-case"><span class="uc-icon">🍼</span><span>赤ちゃんのミルク作りに</span></div>
-          <div class="use-case"><span class="uc-icon">🥘</span><span>お鍋やお米とぎなど、お料理にたっぷり</span></div>
-          <div class="use-case"><span class="uc-icon">💰</span><span>定額制だからどれだけ使ってもお水代一定</span></div>
-        </div>
-
-        <h2 id="offer">【琉宮祭ご来場者様限定】まずは1ヶ月無料で試してみませんか？</h2>
-
-        <img src="https://picsum.photos/seed/ocean/800/340" alt="沖縄の美しい海" class="blog-img">
-        <p class="blog-img-caption">美しい沖縄の海のように、クリアで美味しいお水を毎日の生活に</p>
-
-        <p>「本当に水道水が美味しくなるの？」「うちのキッチンにも置けるかな？」</p>
-        <p>そんな疑問にお答えするため、地球平和表現まつり（琉宮祭）でご縁があった皆様限定で、<strong>【1ヶ月完全無料お試しキャンペーン】</strong>を実施中です！</p>
-
-        <div class="campaign-box">
-          <div class="campaign-badge">🌺 琉宮祭ご来場者様限定キャンペーン</div>
-          <h3>1ヶ月完全無料お試し実施中！</h3>
-          <p>設置費用も、1ヶ月間のお水代も、もし合わなかった場合の撤去費用も<strong>すべて0円</strong>。勝手に自動更新されて課金されることは絶対にありませんので、ご安心ください。</p>
-          <ul class="free-list">
-            <li>設置費用 0円</li>
-            <li>1ヶ月のお水代 0円</li>
-            <li>撤去費用 0円</li>
-            <li>自動更新・課金なし</li>
-          </ul>
-          <a href="https://lstep.app/form/28365/ZMiflJ/69514a" class="cta-btn" target="_blank">▼ 1ヶ月完全無料お試しのお申し込みはこちら ▼</a>
-          <p style="text-align:center;font-size:0.78rem !important;color:#aa7a30 !important;margin-top:10px;margin-bottom:0 !important;">「毎日のお水が美味しくなる感動」と「待ち時間ゼロの快適さ」を、ぜひご自宅で体験してみてください。</p>
-        </div>
-
-        <div class="article-tags">
-          <span class="tags-label">タグ：</span>
-          <a href="#" class="tag">沖縄 水</a>
-          <a href="#" class="tag">ウォーターサーバー</a>
-          <a href="#" class="tag">軟水</a>
-          <a href="#" class="tag">PFAS</a>
-          <a href="#" class="tag">浄水器</a>
-          <a href="#" class="tag">ラクトクウォーター</a>
-        </div>
-
-        <div class="author-card">
-          <div class="author-avatar">🌊</div>
-          <div>
-            <div class="author-name">株式会社SmileGrit</div>
-            <div class="author-bio">沖縄県を拠点に、暮らしを豊かにするサービスを提供しています。「毎日の小さな幸せ」をテーマに、水・健康・デジタルの分野でお客様をサポートしています。</div>
-          </div>
-        </div>
-
       </div>
-    </article>
-  </main>
+      <div class="pain-item">
+        <div class="pain-icon">⏳</div>
+        <div>
+          <strong>「ポット型は、ろ過の"待ち時間"が地味にストレス💦」</strong>
+          <p>料理でたくさん使いたい時や、喉が渇いて今すぐ飲みたい時、チョロチョロとろ過されるのを待つのは面倒ですよね。冷蔵庫の中で場所をとるのも悩みの種です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-widget sidebar-cta-box">
-      <div class="widget-title">🎁 無料お試しキャンペーン</div>
-      <p>琉宮祭ご来場者様限定！1ヶ月完全無料でラクトクウォーターを体験できます。</p>
-      <a href="https://lstep.app/form/28365/ZMiflJ/69514a" class="sidebar-cta-btn" target="_blank">お申し込みはこちら</a>
+  <!-- SOLUTION -->
+  <div class="section">
+    <h2 class="sec-title" id="solution">水道水が「極上の軟水」に変わる！沖縄専用フィルターの秘密</h2>
+    <p>「塩素のニオイを完全に消して、もっと手軽に美味しいお水が飲みたい！」</p>
+    <p>そんな沖縄の皆さまのために作られたのが、水道直結型ウォーターサーバー<strong>「ラクトク（楽得）ウォーター」</strong>です。</p>
+
+    <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&w=780&q=80" alt="透明で清潔な水のイメージ" class="section-img">
+    <p class="img-caption">5段階のフィルターでごみ・塩素・ウイルスを除去し、まろやかな軟水に</p>
+
+    <div class="highlight-box">
+      🔑 最大の特徴は、<strong>【沖縄の水質に合わせて設計された5段階フィルター】</strong>。<br>
+      サビやホコリはもちろん、気になる塩素（カルキ臭）や有機フッ素化合物（PFAS）までしっかりキャッチ！さらに、ミネラルを残しながらお茶やお料理が劇的に美味しくなる「軟水」へと仕上げます。
     </div>
 
-    <div class="sidebar-widget">
-      <div class="widget-title">📋 目次</div>
-      <ul class="toc-list">
-        <li><a href="#pain">毎日のお水へのモヤモヤ</a></li>
-        <li><a href="#solution">沖縄専用フィルターの秘密</a></li>
-        <li><a href="#feature">待ち時間ゼロの快適さ</a></li>
-        <li><a href="#offer">1ヶ月完全無料キャンペーン</a></li>
+    <p><strong>🔬 5段階フィルターの仕組み</strong></p>
+    <div class="filter-steps">
+      <div class="filter-step"><div><strong>サビ・ホコリ除去</strong><span>水道管から混入する微細なごみをキャッチ</span></div></div>
+      <div class="filter-step"><div><strong>塩素・フッ素化合物除去</strong><span>カルキ臭の原因となる塩素と有機フッ素化合物（PFAS）をカット</span></div></div>
+      <div class="filter-step"><div><strong>ウイルス除去</strong><span>目に見えない細菌・ウイルスもしっかりブロック</span></div></div>
+      <div class="filter-step"><div><strong>ミネラル調整・軟水化</strong><span>硬水を「まろやかな軟水」へ変換。出汁の旨みが引き立ちます</span></div></div>
+      <div class="filter-step"><div><strong>塩素・フッ素化合物 最終除去</strong><span>残留した塩素・フッ素化合物を最終段階でさらに除去。より安心・クリアな仕上がりに</span></div></div>
+    </div>
+    <p>いつも使ってる水道水がサーバー（フィルター）を通せば、まるでカフェで出てくるような、<strong>まろやかで美味しいお水</strong>がいつでも飲めるようになります！</p>
+  </div>
+
+  <!-- FEATURE -->
+  <div class="section">
+    <h2 class="sec-title" id="feature">待ち時間ゼロ！冷水も温水も使い放題</h2>
+    <p>ポット型浄水器のように、ろ過を待つ必要はもうありません。水道管と直結しているため、レバーを押すだけで「冷たいお水」も「熱いお湯（約85℃）」も、<strong>待ち時間ゼロ</strong>ですぐに出てきます。</p>
+
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&w=780&q=80" alt="朝のコーヒーを淹れる様子" class="section-img">
+    <p class="img-caption">朝の忙しい時間でも、美味しいお湯がすぐに使えます</p>
+
+    <div class="use-cases">
+      <div class="use-case"><span class="uc-icon">☕️</span><span>朝の忙しい時間のコーヒー作りに</span></div>
+      <div class="use-case"><span class="uc-icon">🍼</span><span>赤ちゃんのミルク作りに</span></div>
+      <div class="use-case"><span class="uc-icon">🥘</span><span>お鍋やお米とぎなど、お料理にたっぷり</span></div>
+      <div class="use-case"><span class="uc-icon">💰</span><span>定額制だからどれだけ使ってもお水代一定</span></div>
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <div class="section">
+    <h2 class="sec-title" id="offer">【琉宮祭ご来場者様限定】まずは1ヶ月無料で試してみませんか？</h2>
+
+    <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?auto=format&w=780&q=80" alt="沖縄の美しいエメラルドグリーンの海" class="section-img">
+    <p class="img-caption">美しい沖縄の海のように、クリアで美味しいお水を毎日の生活に</p>
+
+    <p>「本当に水道水が美味しくなるの？」「うちのキッチンにも置けるかな？」</p>
+    <p>そんな疑問にお答えするため、地球平和表現まつり（琉宮祭）でご縁があった皆様限定で、<strong>【1ヶ月完全無料お試しキャンペーン】</strong>を実施中です！</p>
+
+    <div class="campaign-box">
+      <div class="campaign-badge">🌺 琉宮祭ご来場者様限定キャンペーン</div>
+      <h3>1ヶ月完全無料お試し実施中！</h3>
+      <p>設置費用も、1ヶ月間のお水代も、もし合わなかった場合の撤去費用も<strong>すべて0円</strong>。勝手に自動更新されて課金されることは絶対にありませんので、ご安心ください。</p>
+      <ul class="free-list">
+        <li>設置費用 0円</li>
+        <li>1ヶ月のお水代 0円</li>
+        <li>撤去費用 0円</li>
+        <li>自動更新・課金なし</li>
       </ul>
+      <a href="https://lstep.app/form/28365/ZMiflJ/69514a" class="cta-btn" target="_blank">▼ 1ヶ月完全無料お試しのお申し込みはこちら ▼</a>
+      <p class="cta-note">「毎日のお水が美味しくなる感動」と「待ち時間ゼロの快適さ」を、ぜひご自宅で体験してみてください。</p>
     </div>
+  </div>
 
-    <div class="sidebar-widget">
-      <div class="widget-title">💡 こんな方におすすめ</div>
-      <ul class="toc-list">
-        <li><a href="#">カルキ臭が気になる方</a></li>
-        <li><a href="#">沖縄の硬水が気になる方</a></li>
-        <li><a href="#">ポット浄水器に不満な方</a></li>
-        <li><a href="#">小さなお子さんがいる方</a></li>
-        <li><a href="#">お料理にこだわりたい方</a></li>
-      </ul>
+  <!-- AUTHOR -->
+  <div class="author-card">
+    <div class="author-avatar">🌊</div>
+    <div>
+      <div class="author-name">株式会社SmileGrit</div>
+      <div class="author-bio">沖縄県を拠点に、暮らしを豊かにするサービスを提供しています。「毎日の小さな幸せ」をテーマに、水・健康・デジタルの分野でお客様をサポートしています。</div>
     </div>
-  </aside>
+  </div>
+
 </div>
 
 <footer class="site-footer">
